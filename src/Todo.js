@@ -7,7 +7,7 @@ class Todo extends Component {
         this.state = {
             task: "",
             tasks: [
-                { name: "take react classes" },
+                { name: "take react classes"},
                 { name: "Play PUBG" },
             ]
         }

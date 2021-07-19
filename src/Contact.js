@@ -21,13 +21,32 @@ export default class Contact extends Component {
 
     saveContact = () => {
         let { name, number, contacts } = this.state
+
         let newContact = { name, number, contactId:uuidv4() }
+
         contacts.push(newContact)
         this.setState({ contacts, name: "", number: "" })
     }
 
 
     render() {
+        // this.state.contacts.map(contact => {
+        //     return (<li>
+        //         {contact.contactId} - {contact.name} - {contact.number}  
+        //         &nbsp;&nbsp;
+        //         <button onClick={()=>this.deleteContact(contact.contactId)}>delete</button>
+        //         </li>)
+        // })
+        
+        let contactUi = []
+        this.state.contacts.forEach(contact => {
+            contactUi.push(<li>
+                {contact.contactId} - {contact.name} - {contact.number}  
+                &nbsp;&nbsp;
+                <button onClick={()=>this.deleteContact(contact.contactId)}>delete</button>
+                </li>)
+        })
+
         return (
             <div>
                 <input
@@ -45,13 +64,7 @@ export default class Contact extends Component {
                 <button onClick={this.saveContact}>Save</button>
 
                 <ul>
-                    {this.state.contacts.map(contact => {
-                        return (<li>
-                            {contact.contactId} - {contact.name} - {contact.number}  
-                            &nbsp;&nbsp;
-                            <button onClick={()=>this.deleteContact(contact.contactId)}>delete</button>
-                            </li>)
-                    })}
+                    {contactUi}
                 </ul>
 
 
