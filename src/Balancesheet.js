@@ -15,7 +15,8 @@ export default class Balancesheet extends Component {
             ed_type: "",
             ed_remark: "",
             isEdit: false,        
-            transactions: []
+            transactions: [],
+            updateTxnId:""
         }
 
     }
@@ -51,25 +52,33 @@ export default class Balancesheet extends Component {
 
     editTxn = (txnId)=>{
         let {transactions} = this.state
-        let editTxn = transactions.find(txn=>txn.txnId==txnId)
-        
+        let editTxn = transactions.find(txn=>txn.txnId==txnId)        
         let {amount, type, remark} = editTxn
-
         this.setState({ed_amount:amount, ed_type:type, ed_remark:remark})
-
-        //console.log(ed_amount, ed_type, ed_remark)
-        console.log(amount)
-
-
         console.log(editTxn)
-
-        this.setState({isEdit:true})
+        this.setState({isEdit:true, updateTxnId:txnId})
         
     }
 
+    cancelUpdate = ()=>{
+        this.setState({isEdit:false})
+    }
 
-    changeTransaction = ()=>{
 
+    updateTransaction = ()=>{
+        let {ed_amount, ed_type, ed_remark, updateTxnId, transactions} = this.state
+        let dataToUpdate = {amount:ed_amount, type:ed_type, remark:ed_remark}
+
+        transactions = transactions.map((txn, lcInd)=>{
+            if(txn.txnId == updateTxnId){                
+                return dataToUpdate
+            }else{
+                return txn
+            }
+        })
+
+        
+        this.setState({transactions, isEdit:false})
     }
 
     render() {
@@ -126,7 +135,8 @@ export default class Balancesheet extends Component {
                         onChange={(e) => this.setState({ ed_remark: e.target.value })}
                     ></input>
 
-                    <button onClick={this.changeTransaction}>Change Transaction</button>
+                    <button onClick={this.updateTransaction}>Update Transaction</button>
+                    <button onClick={this.cancelUpdate}>Cancel</button>
                 </div>)}
 
                 {this.state.transactions.length > 0 ? <table border="1" width="100%">

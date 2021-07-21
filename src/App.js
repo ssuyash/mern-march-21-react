@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import  Greet from './Greet'
-import Todo from './Todo'
+import Todos from './Todos'
 import Contact from './Contact'
 import Balancesheet from './Balancesheet'
 import Conditional from './Conditional'
@@ -25,9 +25,9 @@ class App extends Component {
     return (
       // <Conditional/>
       
-       <Balancesheet/>
+      //  <Balancesheet/>
       // <Contact/>
-      // <Todo/>
+      <Todos/>
       // <div>
       //     <input 
       //     type="text" 
