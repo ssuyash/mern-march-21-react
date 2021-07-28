@@ -1,46 +1,57 @@
 import React, { Component } from 'react';
-import  Greet from './Greet'
 import Todos from './Todos'
-import Contact from './Contact'
-import Balancesheet from './Balancesheet'
-import Conditional from './Conditional'
+import Child from './Child'
 
 class App extends Component {
-
   constructor(props) {
+    console.log("APP : Constructor")
     super(props)
   
     this.state = {
-       name:"",
-       lastName:"kumar",
-
+       point:0,
+       isVisible:false
     }
+
+    this.increasePointer = this.increasePointer.bind(this)
+
   }
 
-  handleClick = ()=>{
-    this.setState({name:"Brijesh"})
-  }  
 
-  render() {  
+//whenever we want to put data of props into state, in that case we use this method
+static getDerivedStateFromProps(props, state){
+  console.log("APP : getDerivedStatedFromProps")
+  return {
+    point:200
+  }
+}
+
+
+componentDidMount(){
+  console.log("APP : componentDidMount")
+}
+
+increasePointer(){
+  console.log("we are going to increase the pointer")
+  let {point} = this.state;
+  this.setState({point:point+1})
+}
+  
+render() {
+    console.log("APP : render")
+    
     return (
-      // <Conditional/>
-      
-      //  <Balancesheet/>
-      // <Contact/>
-      <Todos/>
-      // <div>
-      //     <input 
-      //     type="text" 
-      //     value={this.state.name}
-      //     onChange={(e)=>{this.setState({name:e.target.value})}}
-      //     />
-      //     Name : {this.state.name} <br/>
-      //     Last Name: {this.state.lastName}<br/>
-      //     <button onClick={this.handleClick}>change name</button>
-      //     {/* <Greet user={user}/> */}
-      // </div>
+      <div>
+        {this.state.isVisible && <Child/>}
+
+       <button onClick={()=>{this.setState({isVisible:true})}}>Show</button>
+        {/* point value is : {this.state.point}<br/>
+        <button onClick={this.increasePointer}>Increment</button> */}
+      </div>
     );
   }
+
+
+
 }
 
 export default App;

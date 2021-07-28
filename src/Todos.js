@@ -6,35 +6,35 @@ export default class Todos extends Component {
         super(props)
 
         this.state = {
-            todos: [
-                {
-                    "userId": 3,
-                    "id": 48,
-                    "title": "sit reprehenderit omnis quia",
-                    "completed": false
-                },
-            ]
+            todos: [],
+            isLoading: false
         }
     }
 
     fetchData = ()=>{
+        this.setState({isLoading:true})        
         let url = "https://jsonplaceholder.typicode.com/todos"
         
         axios.get(url).then(res=>{
             console.log(res)
             let {data} = res
-            this.setState({todos:data})
+            this.setState({todos:data, isLoading:false})
         }).catch(err=>{
             console.log(err)
+            this.setState({isLoading:false})        
         })
+    }
+
+    componentDidMount(){
+        this.fetchData()
     }
 
     render() {
         return (
             <div>
-                <ul>
+                {this.state.isLoading ? "Loading..." : <ul>
                     {this.state.todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
-                </ul>
+                </ul>}
 
                 <button onClick={this.fetchData}>
                     Get Data from server
