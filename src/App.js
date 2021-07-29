@@ -1,57 +1,44 @@
-import React, { Component } from 'react';
-import Todos from './Todos'
-import Child from './Child'
+import React, {useState, useEffect} from 'react'
+import TodoFn from './Totosfn.js'
 
-class App extends Component {
-  constructor(props) {
-    console.log("APP : Constructor")
-    super(props)
-  
-    this.state = {
-       point:0,
-       isVisible:false
+//'hooks'
+
+export default function App() {
+    const [name, setName] = useState("")
+    const [age, setAge] = useState("")
+
+    //callbackFn, depency list / watch list
+    useEffect(()=>{
+        console.log("Change in Name")
+    }, [name])
+
+
+    useEffect(()=>{
+        console.log("Component Mount Done")
+    }, [])
+
+
+    useEffect(()=>{
+        console.log("Change in Age")
+    }, [age])
+
+    let changeName = ()=>{
+        setName("suyash")
     }
 
-    this.increasePointer = this.increasePointer.bind(this)
+    let changeAge = ()=>{
+        setAge(27)
+    }
+ 
 
-  }
-
-
-//whenever we want to put data of props into state, in that case we use this method
-static getDerivedStateFromProps(props, state){
-  console.log("APP : getDerivedStatedFromProps")
-  return {
-    point:200
-  }
-}
-
-
-componentDidMount(){
-  console.log("APP : componentDidMount")
-}
-
-increasePointer(){
-  console.log("we are going to increase the pointer")
-  let {point} = this.state;
-  this.setState({point:point+1})
-}
-  
-render() {
-    console.log("APP : render")
-    
     return (
-      <div>
-        {this.state.isVisible && <Child/>}
-
-       <button onClick={()=>{this.setState({isVisible:true})}}>Show</button>
-        {/* point value is : {this.state.point}<br/>
-        <button onClick={this.increasePointer}>Increment</button> */}
-      </div>
-    );
-  }
-
-
-
+        <div>
+            <TodoFn/>
+           Name : {name} || Age : {age}
+            <button onClick={changeName}>change Name</button>
+            <button onClick={changeAge}>change Age</button>
+        </div>
+    )
 }
 
-export default App;
+
