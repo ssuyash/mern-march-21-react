@@ -38,3 +38,23 @@ export default function Totosfn() {
 //https://jsonplaceholder.typicode.com/users
 //https://jsonplaceholder.typicode.com/users/1
 //https://jsonplaceholder.typicode.com/users/1/todos
+
+
+// if(todos){
+//     console.log("inside if")
+// }else{
+//     console.log("inside else")
+// }
+
+// false
+// undefined
+// null
+// NaN
+// 0
+// -0
+//"" '' ``
+
+
+
+
+

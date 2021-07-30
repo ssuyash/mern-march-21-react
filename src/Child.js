@@ -1,31 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Child extends Component {
-    constructor(props) {
-        console.log("Child :Constructor ")
-        super(props)
-    
-        this.state = {
-             
-        }
-    }
-
-    static getDerivedStateFromProps(props, state){
-        console.log("Child : getDerivedStateFromProps ")
-        return null
-    }
-
-
-    componentDidMount(){
-        console.log("Child : ComponentDidMount")
-    }
-    
-    render() {
-        console.log("Child : render")
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+function Child({count, setCount}) {
+    return (
+        <div>
+            {count}
+            <button onClick={()=>setCount(count+1)}>Increase</button>
+        </div>
+    )
 }
+
+export default Child

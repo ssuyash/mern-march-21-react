@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import TodoFn from './Totosfn.js'
-
+import Persons from './Persons.js'
 //'hooks'
+
+import Parent from './Parent'
 
 export default function App() {
     const [name, setName] = useState("")
@@ -33,10 +35,12 @@ export default function App() {
 
     return (
         <div>
-            <TodoFn/>
+            <Parent/>
+            {/* <Persons/> */}
+            {/* <TodoFn/>
            Name : {name} || Age : {age}
             <button onClick={changeName}>change Name</button>
-            <button onClick={changeAge}>change Age</button>
+            <button onClick={changeAge}>change Age</button> */}
         </div>
     )
 }
