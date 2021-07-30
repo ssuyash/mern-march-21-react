@@ -31,3 +31,10 @@ export default function Totosfn() {
         </div>
     )
 }
+
+
+//falsy values of javascript
+// create user profile for todos
+//https://jsonplaceholder.typicode.com/users
+//https://jsonplaceholder.typicode.com/users/1
+//https://jsonplaceholder.typicode.com/users/1/todos
