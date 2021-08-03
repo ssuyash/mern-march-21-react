@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Child from './Child'
 
 class App extends Component {
     constructor(props) {
@@ -7,7 +7,8 @@ class App extends Component {
         super(props)
     
         this.state = {
-             count:0
+             count:0,
+             show:true
         }
     }
 
@@ -22,7 +23,7 @@ class App extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log("APP : shouldComponentUpdate")        
-        return false
+        return true
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -34,23 +35,39 @@ class App extends Component {
         console.log("APP : componentDidUpdate")     
     }   
     
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if(nextState.count == this.state.count){
+    //         return false
+    //     }
+    // }
+    
     
     render() {
         console.log("APP : render")     
-
-        
         return (
             <div>
-                {this.state.count}
-                <button onClick={()=>this.inc()}>inc</button>                
+               {this.state.show &&  <Child count={this.state.count}/>}<br/>
+                Parent Count {this.state.count}<br/>
+
+                <button className="btn btn-primary" onClick={()=>this.inc()}>inc</button>                
             </div>
         );
     }
 
     inc = ()=>{
         let {count} = this.state
-        this.setState({count:count+1})
+        this.setState({count, show:false})
     }
 }
 
 export default App;
+
+
+
+//Pure Components
+//Error Boundaries
+//styledComponent
+
+//routing
+//contenxt API
+//Ref
