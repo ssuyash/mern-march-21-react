@@ -1,48 +1,56 @@
-import React, {useState, useEffect} from 'react'
-import TodoFn from './Totosfn.js'
-import Persons from './Persons.js'
-//'hooks'
-
-import Parent from './Parent'
-
-export default function App() {
-    const [name, setName] = useState("")
-    const [age, setAge] = useState("")
-
-    //callbackFn, depency list / watch list
-    useEffect(()=>{
-        console.log("Change in Name")
-    }, [name])
+import React, { Component } from 'react';
 
 
-    useEffect(()=>{
-        console.log("Component Mount Done")
-    }, [])
-
-
-    useEffect(()=>{
-        console.log("Change in Age")
-    }, [age])
-
-    let changeName = ()=>{
-        setName("suyash")
+class App extends Component {
+    constructor(props) {
+        console.log("Constructor : APP")
+        super(props)
+    
+        this.state = {
+             count:0
+        }
     }
 
-    let changeAge = ()=>{
-        setAge(27)
+    static getDerivedStateFromProps(props, state) {
+        console.log("APP : getDerivedStateFromProps")
+        return null
     }
- 
 
-    return (
-        <div>
-            <Parent/>
-            {/* <Persons/> */}
-            {/* <TodoFn/>
-           Name : {name} || Age : {age}
-            <button onClick={changeName}>change Name</button>
-            <button onClick={changeAge}>change Age</button> */}
-        </div>
-    )
+    componentDidMount(){
+        console.log("APP : componentDidMount")        
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("APP : shouldComponentUpdate")        
+        return false
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log("APP : getSnapshotBeforeUpdate")     
+        return null         
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("APP : componentDidUpdate")     
+    }   
+    
+    
+    render() {
+        console.log("APP : render")     
+
+        
+        return (
+            <div>
+                {this.state.count}
+                <button onClick={()=>this.inc()}>inc</button>                
+            </div>
+        );
+    }
+
+    inc = ()=>{
+        let {count} = this.state
+        this.setState({count:count+1})
+    }
 }
 
-
+export default App;
