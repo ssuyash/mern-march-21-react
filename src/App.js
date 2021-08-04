@@ -1,73 +1,27 @@
-import React, { Component } from 'react';
-import Child from './Child'
+import React from 'react'
+import {
+    BrowserRouter as Router,    
+    Route, 
+    Switch    
+  } from "react-router-dom";
 
-class App extends Component {
-    constructor(props) {
-        console.log("Constructor : APP")
-        super(props)
-    
-        this.state = {
-             count:0,
-             show:true
-        }
-    }
+  import {Home, About, Services, Pagenotfound} from './Pages'
+  import Nav from './components/Nav'
+  
 
-    static getDerivedStateFromProps(props, state) {
-        console.log("APP : getDerivedStateFromProps")
-        return null
-    }
 
-    componentDidMount(){
-        console.log("APP : componentDidMount")        
-    }
+export default function App() {
+    return (
+        
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("APP : shouldComponentUpdate")        
-        return true
-    }
-
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log("APP : getSnapshotBeforeUpdate")     
-        return null         
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        console.log("APP : componentDidUpdate")     
-    }   
-    
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     if(nextState.count == this.state.count){
-    //         return false
-    //     }
-    // }
-    
-    
-    render() {
-        console.log("APP : render")     
-        return (
-            <div>
-               {this.state.show &&  <Child count={this.state.count}/>}<br/>
-                Parent Count {this.state.count}<br/>
-
-                <button className="btn btn-primary" onClick={()=>this.inc()}>inc</button>                
-            </div>
-        );
-    }
-
-    inc = ()=>{
-        let {count} = this.state
-        this.setState({count, show:false})
-    }
+        <Router>
+            <Nav/>       
+            <Switch>
+                <Route path="/" component={Home} exact/>
+                <Route path="/about" component={About}/>
+                <Route path="/service" component={Services}/>
+                <Route path="*" component={Pagenotfound}/>
+            </Switch>            
+        </Router>
+    )
 }
-
-export default App;
-
-
-
-//Pure Components
-//Error Boundaries
-//styledComponent
-
-//routing
-//contenxt API
-//Ref
