@@ -1102,6 +1102,8 @@ export default function Products() {
     let cartData = [...cart]
     cartData.push({ itemId: offerId, qnty: 1 })
     setCart(cartData)
+
+    //TODO : if item is already in cart then increase it's qnty
   }
 
   
