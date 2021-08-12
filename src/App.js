@@ -8,12 +8,13 @@ import {
   import {Home, About, Services, Pagenotfound} from './Pages'
   import Nav from './components/Nav'
   import Products from './components/Products'
+  import Mcq from './components/Mcq'
   
 
 
 export default function App() {
     return (
-        <Products/>
+        <Mcq/>
 
         // <Router>
         //     <Nav/>       
