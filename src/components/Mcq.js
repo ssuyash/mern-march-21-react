@@ -133,8 +133,6 @@ export default function Mcq() {
                 </div>
 
 
-
-
                 <div className="col-md-6 mt-5">
                     {
                         questions.map((que, index)=><button 
